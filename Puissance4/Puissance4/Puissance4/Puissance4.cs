@@ -135,6 +135,10 @@ namespace Puissance4
                 {
                     direction = "Down";
                     //TODO : descendre le pion au bon endroit dans la matrice
+                        //Récupérer la colonne avec le curseur
+                        //Lire la matrice de la colonne. 
+                            //Tant que l'élément vaut 0 on descend. 
+                        //On met à jour l'élément (n-1)
                     //TODO : Transparence du curseur
                     isJoueurTurn = false;
                     lockKey = true;
