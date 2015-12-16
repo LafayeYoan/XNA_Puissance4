@@ -1,0 +1,6 @@
+C:\Users\EpulInfo\Documents\Visual Studio 2013\Projects\XNA_Puissance4\Puissance4\Puissance4\Puissance4\obj\x86\Debug\Puissance4.csprojResolveAssemblyReference.cache
+C:\Users\EpulInfo\Documents\Visual Studio 2013\Projects\XNA_Puissance4\Puissance4\Puissance4\Puissance4\obj\x86\Debug\Microsoft.Xna.Framework.RuntimeProfile.txt
+C:\Users\EpulInfo\Documents\Visual Studio 2013\Projects\XNA_Puissance4\Puissance4\Puissance4\Puissance4\bin\x86\Debug\Puissance4.exe
+C:\Users\EpulInfo\Documents\Visual Studio 2013\Projects\XNA_Puissance4\Puissance4\Puissance4\Puissance4\bin\x86\Debug\Puissance4.pdb
+C:\Users\EpulInfo\Documents\Visual Studio 2013\Projects\XNA_Puissance4\Puissance4\Puissance4\Puissance4\obj\x86\Debug\Puissance4.exe
+C:\Users\EpulInfo\Documents\Visual Studio 2013\Projects\XNA_Puissance4\Puissance4\Puissance4\Puissance4\obj\x86\Debug\Puissance4.pdb

@@ -1,0 +1,23 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<XnaContent xmlns:Pipeline="Microsoft.Xna.Framework.Content.Pipeline">
+  <Asset Type="Pipeline:BuildItemCollection">
+    <BuildSuccessful>true</BuildSuccessful>
+    <Settings>
+      <ContentProjectGUID>{B69BD4DF-4F17-460B-8B99-8B7208389F2D}</ContentProjectGUID>
+      <TargetPlatform>Windows</TargetPlatform>
+      <TargetProfile>Reach</TargetProfile>
+      <BuildConfiguration>Debug</BuildConfiguration>
+      <CompressContent>false</CompressContent>
+      <RootDirectory>C:\Users\EpulInfo\Documents\Visual Studio 2013\Projects\XNA_Puissance4\Puissance4\Puissance4\Puissance4Content\</RootDirectory>
+      <LoggerRootDirectory>C:\Users\EpulInfo\Documents\Visual Studio 2013\Projects\XNA_Puissance4\Puissance4\Puissance4\Puissance4\</LoggerRootDirectory>
+      <IntermediateDirectory>C:\Users\EpulInfo\Documents\Visual Studio 2013\Projects\XNA_Puissance4\Puissance4\Puissance4\Puissance4\obj\x86\Debug\</IntermediateDirectory>
+      <OutputDirectory>C:\Users\EpulInfo\Documents\Visual Studio 2013\Projects\XNA_Puissance4\Puissance4\Puissance4\Puissance4\bin\x86\Debug\Content\</OutputDirectory>
+    </Settings>
+    <Assemblies>
+      <Assembly>
+        <Key>C:\Windows\Microsoft.Net\assembly\GAC_32\Microsoft.Xna.Framework.Content.Pipeline\v4.0_4.0.0.0__842cf8be1de50553\Microsoft.Xna.Framework.Content.Pipeline.dll</Key>
+        <Value>2015-12-16T09:23:28.4844831+01:00</Value>
+      </Assembly>
+    </Assemblies>
+  </Asset>
+</XnaContent>
