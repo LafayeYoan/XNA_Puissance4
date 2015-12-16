@@ -13,16 +13,15 @@ namespace Puissance4
 {
     /// <summary>
     /// This is the main type for your game
-    /// 0 : case libre
-    /// 1 : case occupée par le joueur
-    /// 2 : case occupée par l'IA
     /// </summary>
     public class Puissance4 : Microsoft.Xna.Framework.Game
     {
         public const int NB_COLONNES = 7;
         public const int NB_LIGNES = 6;
 
-
+        /// 0 : case libre
+        /// 1 : case occupée par le joueur
+        /// 2 : case occupée par l'IA
         private int[,] map;
         GraphicsDeviceManager graphics;
         SpriteBatch spriteBatch;
