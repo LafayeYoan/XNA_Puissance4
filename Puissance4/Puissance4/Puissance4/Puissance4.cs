@@ -18,6 +18,7 @@ namespace Puissance4
     {
         public const int NB_COLONNES = 7;
         public const int NB_LIGNES = 6;
+        public const int TAILLE_BLOCK = 80;
 
         /// 0 : case libre
         /// 1 : case occupée par le joueur
@@ -70,9 +71,9 @@ namespace Puissance4
             graphics.PreferredBackBufferHeight = 660;
             graphics.ApplyChanges();
             // on charge un objet mur 
-            cadre = new ObjetPuissance4(Content.Load<Texture2D>("Images\\cadre"), new Vector2(0f, 0f), new Vector2(100f, 100f));
-            pion_IA = new ObjetPuissance4(Content.Load<Texture2D>("Images\\pion_IA"), new Vector2(0f, 0f), new Vector2(100f, 100f));
-            pion_Joueur = new ObjetPuissance4(Content.Load<Texture2D>("Images\\pion_Joueur"), new Vector2(0f, 0f), new Vector2(100f, 100f));
+            cadre = new ObjetPuissance4(Content.Load<Texture2D>("Images\\cadre"), new Vector2(0f, 0f), new Vector2(TAILLE_BLOCK, TAILLE_BLOCK));
+            pion_IA = new ObjetPuissance4(Content.Load<Texture2D>("Images\\pion_IA"), new Vector2(0f, 0f), new Vector2(TAILLE_BLOCK, TAILLE_BLOCK));
+            pion_Joueur = new ObjetPuissance4(Content.Load<Texture2D>("Images\\pion_Joueur"), new Vector2(0f, 0f), new Vector2(TAILLE_BLOCK, TAILLE_BLOCK));
 
         }
 
@@ -107,10 +108,27 @@ namespace Puissance4
         /// <param name="gameTime">Provides a snapshot of timing values.</param>
         protected override void Draw(GameTime gameTime)
         {
-            GraphicsDevice.Clear(Color.CornflowerBlue);
+            GraphicsDevice.Clear(Color.Black);
 
-            // TODO: Add your drawing code here
+            spriteBatch.Begin();
 
+            int offsetX = 40;
+            int offsetY = 140;
+            for (int x = 0; x < NB_LIGNES; x++)
+            {
+                for (int y = 0; y < NB_COLONNES; y++)
+                {
+                    if (map[x, y] == 0)
+                    {
+                        int xpos, ypos;
+                        xpos = offsetX + x * TAILLE_BLOCK;
+                        ypos = offsetY + y * TAILLE_BLOCK;
+                        Vector2 pos = new Vector2(ypos, xpos);
+                        spriteBatch.Draw (cadre.Texture, pos, Color.White);
+                    }
+                }
+            }
+            spriteBatch.End();
             base.Draw(gameTime);
         }
     }
