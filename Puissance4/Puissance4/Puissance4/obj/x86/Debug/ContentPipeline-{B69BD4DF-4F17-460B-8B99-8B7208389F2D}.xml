@@ -28,6 +28,15 @@
       <Output>C:\Users\EpulInfo\Documents\Visual Studio 2013\Projects\XNA_Puissance4\Puissance4\Puissance4\Puissance4\bin\x86\Debug\Content\Images\pion_Joueur.xnb</Output>
       <Time>2015-12-16T10:47:03.6905027+01:00</Time>
     </Item>
+    <Item>
+      <Source>Images\cursor.png</Source>
+      <Name>Images\cursor</Name>
+      <Importer>TextureImporter</Importer>
+      <Processor>TextureProcessor</Processor>
+      <Options>None</Options>
+      <Output>C:\Users\EpulInfo\Documents\Visual Studio 2013\Projects\XNA_Puissance4\Puissance4\Puissance4\Puissance4\bin\x86\Debug\Content\Images\cursor.xnb</Output>
+      <Time>2015-12-16T11:15:24.4795787+01:00</Time>
+    </Item>
     <BuildSuccessful>true</BuildSuccessful>
     <Settings>
       <ContentProjectGUID>{B69BD4DF-4F17-460B-8B99-8B7208389F2D}</ContentProjectGUID>

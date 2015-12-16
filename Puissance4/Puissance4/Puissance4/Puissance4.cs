@@ -103,7 +103,7 @@ namespace Puissance4
             if (GamePad.GetState(PlayerIndex.One).Buttons.Back == ButtonState.Pressed)
                 this.Exit();
 
-            if (isJoueurTurn = true)
+            if (isJoueurTurn == true)
             {
                 KeyboardState keyboard = Keyboard.GetState();
                 if (keyboard.IsKeyDown(Keys.Right))
@@ -127,6 +127,7 @@ namespace Puissance4
                 {
                     direction = "Down";
                     //TODO : descendre le pion au bon endroit dans la matrice
+                    //TODO : Transparence du curseur
                     isJoueurTurn = false;
                 }
             }
@@ -136,8 +137,22 @@ namespace Puissance4
                 isJoueurTurn = true;
             }
 
+
             //TODO : Mettre à jour l'affichage
             base.Update(gameTime);
+        }
+
+        private void DrawCursor(){
+
+        }
+
+        private void DrawBlock(ObjetPuissance4 obj, int offsetX, int offsetY, int x, int y)
+        {
+            int xpos, ypos;
+            xpos = offsetX + x * TAILLE_BLOCK;
+            ypos = offsetY + y * TAILLE_BLOCK;
+            Vector2 pos = new Vector2(ypos, xpos);
+            spriteBatch.Draw(obj.Texture, pos, Color.White);
         }
 
         /// <summary>
@@ -150,7 +165,7 @@ namespace Puissance4
 
             spriteBatch.Begin();
 
-            int offsetX = 40;
+            int offsetX = 140;
             int offsetY = 140;
             for (int x = 0; x < NB_LIGNES; x++)
             {
@@ -158,11 +173,17 @@ namespace Puissance4
                 {
                     if (map[x, y] == 0)
                     {
-                        int xpos, ypos;
-                        xpos = offsetX + x * TAILLE_BLOCK;
-                        ypos = offsetY + y * TAILLE_BLOCK;
-                        Vector2 pos = new Vector2(ypos, xpos);
-                        spriteBatch.Draw (cadre.Texture, pos, Color.White);
+                        DrawBlock(cadre, offsetX, offsetY, x, y);
+                    }
+
+                    if (map[x, y] == 1)
+                    {
+                        DrawBlock(pion_Joueur, offsetX, offsetY, x, y);
+                    }
+
+                    if (map[x, y] == 2)
+                    {
+                        DrawBlock(pion_IA, offsetX, offsetY, x, y);
                     }
                 }
             }
