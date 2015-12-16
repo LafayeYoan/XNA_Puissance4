@@ -20,26 +20,36 @@ namespace Puissance4
         public const int NB_LIGNES = 6;
         public const int TAILLE_BLOCK = 80;
 
-        /// 0 : case libre
-        /// 1 : case occupée par le joueur
-        /// 2 : case occupée par l'IA
+        // 0 : case libre
+        // 1 : case occupée par le joueur
+        // 2 : case occupée par l'IA
         private int[,] map;
+        private String direction;
+
+        private Boolean isJoueurTurn;
+        //cursorPosition représente le curseur du joueur pour choisir où placer son pion
+        private int cursorPosition;
+
         private ObjetPuissance4 cadre;
         private ObjetPuissance4 pion_IA;
         private ObjetPuissance4 pion_Joueur;
+
         GraphicsDeviceManager graphics;
         SpriteBatch spriteBatch;
 
         public Puissance4()
         {
+            isJoueurTurn = true;
+            cursorPosition = 0;
+
             map = new int[NB_LIGNES, NB_COLONNES]{
-            {0, 0, 0, 0, 0, 0, 0},
-            {0, 0, 0, 0, 0, 0, 0},
-            {0, 0, 0, 0, 0, 0, 0},
-            {0, 0, 0, 0, 0, 0, 0},
-            {0, 0, 0, 0, 0, 0, 0},
-            {0, 0, 0, 0, 0, 0, 0}
-        };
+                {0, 0, 0, 0, 0, 0, 0},
+                {0, 0, 0, 0, 0, 0, 0},
+                {0, 0, 0, 0, 0, 0, 0},
+                {0, 0, 0, 0, 0, 0, 0},
+                {0, 0, 0, 0, 0, 0, 0},
+                {0, 0, 0, 0, 0, 0, 0}
+            };
 
             graphics = new GraphicsDeviceManager(this);
             Content.RootDirectory = "Content";
@@ -53,8 +63,6 @@ namespace Puissance4
         /// </summary>
         protected override void Initialize()
         {
-            // TODO: Add your initialization logic here
-
             base.Initialize();
         }
 
@@ -64,17 +72,15 @@ namespace Puissance4
         /// </summary>
         protected override void LoadContent()
         {
-            // Create a new SpriteBatch, which can be used to draw textures.
             spriteBatch = new SpriteBatch(GraphicsDevice);
 
             graphics.PreferredBackBufferWidth = 1024;
             graphics.PreferredBackBufferHeight = 660;
             graphics.ApplyChanges();
-            // on charge un objet mur 
+ 
             cadre = new ObjetPuissance4(Content.Load<Texture2D>("Images\\cadre"), new Vector2(0f, 0f), new Vector2(TAILLE_BLOCK, TAILLE_BLOCK));
             pion_IA = new ObjetPuissance4(Content.Load<Texture2D>("Images\\pion_IA"), new Vector2(0f, 0f), new Vector2(TAILLE_BLOCK, TAILLE_BLOCK));
             pion_Joueur = new ObjetPuissance4(Content.Load<Texture2D>("Images\\pion_Joueur"), new Vector2(0f, 0f), new Vector2(TAILLE_BLOCK, TAILLE_BLOCK));
-
         }
 
         /// <summary>
@@ -97,8 +103,40 @@ namespace Puissance4
             if (GamePad.GetState(PlayerIndex.One).Buttons.Back == ButtonState.Pressed)
                 this.Exit();
 
-            // TODO: Add your update logic here
+            if (isJoueurTurn = true)
+            {
+                KeyboardState keyboard = Keyboard.GetState();
+                if (keyboard.IsKeyDown(Keys.Right))
+                {
+                    direction = "Right";
+                    if (cursorPosition < (NB_COLONNES - 1))
+                    {
+                        cursorPosition ++;
+                    } 
+                }
+                if (keyboard.IsKeyDown(Keys.Left))
+                {
+                    //TODO : vérifier que la variable direction sert réellement à quelque chose ?
+                    direction = "Left";
+                    if (cursorPosition > 0)
+                    {
+                        cursorPosition--;
+                    }
+                }
+                if (keyboard.IsKeyDown(Keys.Down))
+                {
+                    direction = "Down";
+                    //TODO : descendre le pion au bon endroit dans la matrice
+                    isJoueurTurn = false;
+                }
+            }
+            else
+            {
+                //Tour IA
+                isJoueurTurn = true;
+            }
 
+            //TODO : Mettre à jour l'affichage
             base.Update(gameTime);
         }
 
