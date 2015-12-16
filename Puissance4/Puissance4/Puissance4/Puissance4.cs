@@ -23,6 +23,9 @@ namespace Puissance4
         /// 1 : case occupée par le joueur
         /// 2 : case occupée par l'IA
         private int[,] map;
+        private ObjetPuissance4 cadre;
+        private ObjetPuissance4 pion_IA;
+        private ObjetPuissance4 pion_Joueur;
         GraphicsDeviceManager graphics;
         SpriteBatch spriteBatch;
 
@@ -63,7 +66,14 @@ namespace Puissance4
             // Create a new SpriteBatch, which can be used to draw textures.
             spriteBatch = new SpriteBatch(GraphicsDevice);
 
-            // TODO: use this.Content to load your game content here
+            graphics.PreferredBackBufferWidth = 1024;
+            graphics.PreferredBackBufferHeight = 660;
+            graphics.ApplyChanges();
+            // on charge un objet mur 
+            cadre = new ObjetPuissance4(Content.Load<Texture2D>("Images\\cadre"), new Vector2(0f, 0f), new Vector2(100f, 100f));
+            pion_IA = new ObjetPuissance4(Content.Load<Texture2D>("Images\\pion_IA"), new Vector2(0f, 0f), new Vector2(100f, 100f));
+            pion_Joueur = new ObjetPuissance4(Content.Load<Texture2D>("Images\\pion_Joueur"), new Vector2(0f, 0f), new Vector2(100f, 100f));
+
         }
 
         /// <summary>

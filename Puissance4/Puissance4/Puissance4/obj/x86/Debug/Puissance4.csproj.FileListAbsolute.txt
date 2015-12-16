@@ -4,3 +4,6 @@ C:\Users\EpulInfo\Documents\Visual Studio 2013\Projects\XNA_Puissance4\Puissance
 C:\Users\EpulInfo\Documents\Visual Studio 2013\Projects\XNA_Puissance4\Puissance4\Puissance4\Puissance4\bin\x86\Debug\Puissance4.pdb
 C:\Users\EpulInfo\Documents\Visual Studio 2013\Projects\XNA_Puissance4\Puissance4\Puissance4\Puissance4\obj\x86\Debug\Puissance4.exe
 C:\Users\EpulInfo\Documents\Visual Studio 2013\Projects\XNA_Puissance4\Puissance4\Puissance4\Puissance4\obj\x86\Debug\Puissance4.pdb
+C:\Users\EpulInfo\Documents\Visual Studio 2013\Projects\XNA_Puissance4\Puissance4\Puissance4\Puissance4\bin\x86\Debug\Content\Images\cadre.xnb
+C:\Users\EpulInfo\Documents\Visual Studio 2013\Projects\XNA_Puissance4\Puissance4\Puissance4\Puissance4\bin\x86\Debug\Content\Images\pion_IA.xnb
+C:\Users\EpulInfo\Documents\Visual Studio 2013\Projects\XNA_Puissance4\Puissance4\Puissance4\Puissance4\bin\x86\Debug\Content\Images\pion_Joueur.xnb
