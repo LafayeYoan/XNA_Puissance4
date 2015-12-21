@@ -16,16 +16,16 @@ namespace Puissance4
     /// </summary>
     public class Puissance4 : Microsoft.Xna.Framework.Game
     {
-        public const int NB_COLONNES = 7;
-        public const int NB_LIGNES = 6;
+       
         public const int TAILLE_BLOCK = 80;
         public const int OFFSET_X = 140;
         public const int OFFSET_Y = 140;
 
-        // 0 : case libre
-        // 1 : case occupée par le joueur
-        // 2 : case occupée par l'IA
-        private int[,] map;
+        public const int EMPTY_TOKEN = 0;
+        public const int PLAYER_TOKEN = 1;
+        public const int IA_TOKEN = 2;
+
+        private Map map;
         private String direction;
 
         private Boolean isJoueurTurn;
@@ -37,6 +37,7 @@ namespace Puissance4
         private ObjetPuissance4 cursor;
         private ObjetPuissance4 pion_IA;
         private ObjetPuissance4 pion_Joueur;
+        private int gagnant = -1;
 
         GraphicsDeviceManager graphics;
         SpriteBatch spriteBatch;
@@ -47,15 +48,7 @@ namespace Puissance4
             lockKey = false;
             cursorPosition = 0;
 
-            map = new int[NB_LIGNES, NB_COLONNES]{
-                {0, 0, 0, 0, 0, 0, 0},
-                {0, 0, 0, 0, 0, 0, 0},
-                {0, 0, 0, 0, 0, 0, 0},
-                {0, 0, 0, 0, 0, 0, 0},
-                {0, 0, 0, 0, 0, 0, 0},
-                {0, 0, 0, 0, 0, 0, 0}
-            };
-
+            map = new Map();
             graphics = new GraphicsDeviceManager(this);
             Content.RootDirectory = "Content";
         }
@@ -115,7 +108,7 @@ namespace Puissance4
                 if (keyboard.IsKeyDown(Keys.Right) && !lockKey)
                 {
                     direction = "Right";
-                    if (cursorPosition < (NB_COLONNES - 1))
+                    if (cursorPosition < (Map.NB_COLONNES - 1))
                     {
                         cursorPosition ++;
                     }
@@ -123,7 +116,6 @@ namespace Puissance4
                 }
                 if (keyboard.IsKeyDown(Keys.Left) && !lockKey)
                 {
-                    //TODO : vérifier que la variable direction sert réellement à quelque chose ?
                     direction = "Left";
                     if (cursorPosition > 0)
                     {
@@ -134,13 +126,12 @@ namespace Puissance4
                 if (keyboard.IsKeyDown(Keys.Down) && !lockKey)
                 {
                     direction = "Down";
-                    //TODO : descendre le pion au bon endroit dans la matrice
-                        //Récupérer la colonne avec le curseur
-                        //Lire la matrice de la colonne. 
-                            //Tant que l'élément vaut 0 on descend. 
-                        //On met à jour l'élément (n-1)
+                    if (map.columnHaveFreeSpace(cursorPosition))
+                    {
+                        gagnant = map.addToken(cursorPosition, PLAYER_TOKEN);
+                        isJoueurTurn = false;
+                    }
                     //TODO : Transparence du curseur
-                    isJoueurTurn = false;
                     lockKey = true;
                 }
 
@@ -200,21 +191,21 @@ namespace Puissance4
             GraphicsDevice.Clear(Color.Black);
 
             spriteBatch.Begin();
-            for (int x = 0; x < NB_LIGNES; x++)
+            for (int x = 0; x < Map.NB_LIGNES; x++)
             {
-                for (int y = 0; y < NB_COLONNES; y++)
+                for (int y = 0; y < Map.NB_COLONNES; y++)
                 {
-                    if (map[x, y] == 0)
+                    if (map.getValue(x, y) == EMPTY_TOKEN)
                     {
                         DrawBlock(cadre,  x, y);
                     }
 
-                    if (map[x, y] == 1)
+                    if (map.getValue(x, y) == PLAYER_TOKEN)
                     {
                         DrawBlock(pion_Joueur, x, y);
                     }
 
-                    if (map[x, y] == 2)
+                    if (map.getValue(x, y) == IA_TOKEN)
                     {
                         DrawBlock(pion_IA,  x, y);
                     }

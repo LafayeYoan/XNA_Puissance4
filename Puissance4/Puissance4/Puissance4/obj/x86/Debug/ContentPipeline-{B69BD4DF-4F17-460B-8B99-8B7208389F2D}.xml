@@ -7,8 +7,8 @@
       <Importer>TextureImporter</Importer>
       <Processor>TextureProcessor</Processor>
       <Options>None</Options>
-      <Output>C:\Users\EpulInfo\Documents\Visual Studio 2013\Projects\XNA_Puissance4\Puissance4\Puissance4\Puissance4\bin\x86\Debug\Content\Images\cadre.xnb</Output>
-      <Time>2015-12-16T10:47:03.6805017+01:00</Time>
+      <Output>C:\Users\Darkos\Documents\GitHub\XNA_Puissance4\Puissance4\Puissance4\Puissance4\bin\x86\Debug\Content\Images\cadre.xnb</Output>
+      <Time>2015-12-21T21:17:07.2986271+01:00</Time>
     </Item>
     <Item>
       <Source>Images\pion_IA.png</Source>
@@ -16,8 +16,8 @@
       <Importer>TextureImporter</Importer>
       <Processor>TextureProcessor</Processor>
       <Options>None</Options>
-      <Output>C:\Users\EpulInfo\Documents\Visual Studio 2013\Projects\XNA_Puissance4\Puissance4\Puissance4\Puissance4\bin\x86\Debug\Content\Images\pion_IA.xnb</Output>
-      <Time>2015-12-16T10:47:03.6865023+01:00</Time>
+      <Output>C:\Users\Darkos\Documents\GitHub\XNA_Puissance4\Puissance4\Puissance4\Puissance4\bin\x86\Debug\Content\Images\pion_IA.xnb</Output>
+      <Time>2015-12-16T10:52:46.1134726+01:00</Time>
     </Item>
     <Item>
       <Source>Images\pion_Joueur.png</Source>
@@ -25,8 +25,8 @@
       <Importer>TextureImporter</Importer>
       <Processor>TextureProcessor</Processor>
       <Options>None</Options>
-      <Output>C:\Users\EpulInfo\Documents\Visual Studio 2013\Projects\XNA_Puissance4\Puissance4\Puissance4\Puissance4\bin\x86\Debug\Content\Images\pion_Joueur.xnb</Output>
-      <Time>2015-12-16T10:47:03.6905027+01:00</Time>
+      <Output>C:\Users\Darkos\Documents\GitHub\XNA_Puissance4\Puissance4\Puissance4\Puissance4\bin\x86\Debug\Content\Images\pion_Joueur.xnb</Output>
+      <Time>2015-12-16T10:52:46.1144727+01:00</Time>
     </Item>
     <Item>
       <Source>Images\cursor.png</Source>
@@ -34,8 +34,8 @@
       <Importer>TextureImporter</Importer>
       <Processor>TextureProcessor</Processor>
       <Options>None</Options>
-      <Output>C:\Users\EpulInfo\Documents\Visual Studio 2013\Projects\XNA_Puissance4\Puissance4\Puissance4\Puissance4\bin\x86\Debug\Content\Images\cursor.xnb</Output>
-      <Time>2015-12-16T11:15:24.4795787+01:00</Time>
+      <Output>C:\Users\Darkos\Documents\GitHub\XNA_Puissance4\Puissance4\Puissance4\Puissance4\bin\x86\Debug\Content\Images\cursor.xnb</Output>
+      <Time>2015-12-21T21:16:35.4028028+01:00</Time>
     </Item>
     <BuildSuccessful>true</BuildSuccessful>
     <Settings>
@@ -44,10 +44,10 @@
       <TargetProfile>Reach</TargetProfile>
       <BuildConfiguration>Debug</BuildConfiguration>
       <CompressContent>false</CompressContent>
-      <RootDirectory>C:\Users\EpulInfo\Documents\Visual Studio 2013\Projects\XNA_Puissance4\Puissance4\Puissance4\Puissance4Content\</RootDirectory>
-      <LoggerRootDirectory>C:\Users\EpulInfo\Documents\Visual Studio 2013\Projects\XNA_Puissance4\Puissance4\Puissance4\Puissance4\</LoggerRootDirectory>
-      <IntermediateDirectory>C:\Users\EpulInfo\Documents\Visual Studio 2013\Projects\XNA_Puissance4\Puissance4\Puissance4\Puissance4\obj\x86\Debug\</IntermediateDirectory>
-      <OutputDirectory>C:\Users\EpulInfo\Documents\Visual Studio 2013\Projects\XNA_Puissance4\Puissance4\Puissance4\Puissance4\bin\x86\Debug\Content\</OutputDirectory>
+      <RootDirectory>C:\Users\Darkos\Documents\GitHub\XNA_Puissance4\Puissance4\Puissance4\Puissance4Content\</RootDirectory>
+      <LoggerRootDirectory>C:\Users\Darkos\Documents\GitHub\XNA_Puissance4\Puissance4\Puissance4\Puissance4\</LoggerRootDirectory>
+      <IntermediateDirectory>C:\Users\Darkos\Documents\GitHub\XNA_Puissance4\Puissance4\Puissance4\Puissance4\obj\x86\Debug\</IntermediateDirectory>
+      <OutputDirectory>C:\Users\Darkos\Documents\GitHub\XNA_Puissance4\Puissance4\Puissance4\Puissance4\bin\x86\Debug\Content\</OutputDirectory>
     </Settings>
     <Assemblies>
       <Assembly>
@@ -76,7 +76,7 @@
       </Assembly>
       <Assembly>
         <Key>C:\Windows\Microsoft.Net\assembly\GAC_32\Microsoft.Xna.Framework.Content.Pipeline\v4.0_4.0.0.0__842cf8be1de50553\Microsoft.Xna.Framework.Content.Pipeline.dll</Key>
-        <Value>2015-12-16T09:23:28.4844831+01:00</Value>
+        <Value>2015-12-16T08:37:55.1816095+01:00</Value>
       </Assembly>
     </Assemblies>
   </Asset>
