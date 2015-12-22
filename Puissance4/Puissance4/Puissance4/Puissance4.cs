@@ -155,6 +155,7 @@ namespace Puissance4
             else
             {
                 //Tour IA
+                gagnant = map.addToken(IAJoueur.getBestColumn(map), Puissance4.IA_TOKEN);
                 isJoueurTurn = true;
             }
 
