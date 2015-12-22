@@ -25,6 +25,11 @@ namespace Puissance4
         public const int PLAYER_TOKEN = 1;
         public const int IA_TOKEN = 2;
 
+        /// <summary>
+        /// Nombre de jeton pour gagner
+        /// </summary>
+        public const int TOKEN_IN_A_ROW_TO_WIN = 4;
+
         private Map map;
         private String direction;
 
@@ -37,14 +42,16 @@ namespace Puissance4
         private ObjetPuissance4 cursor;
         private ObjetPuissance4 pion_IA;
         private ObjetPuissance4 pion_Joueur;
+
         private int gagnant = -1;
+
 
         GraphicsDeviceManager graphics;
         SpriteBatch spriteBatch;
 
         public Puissance4()
         {
-            isJoueurTurn = true;
+            isJoueurTurn = false;
             lockKey = false;
             cursorPosition = 0;
 

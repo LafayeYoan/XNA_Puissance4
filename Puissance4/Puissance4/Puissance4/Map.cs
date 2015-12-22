@@ -152,24 +152,29 @@ namespace Puissance4
         /// <param name="ligne"></param>
         /// <param name="colonne"></param>
         /// <returns></returns>
-        private int getGagnant(int ligne, int colonne)
+        public int getGagnant(int ligne, int colonne)
         {
-            int gagnant = test4Vertical(ligne, colonne);
+            int tokenAct = map[ligne, colonne];
+            if (tokenAct == Puissance4.EMPTY_TOKEN)
+            {
+                return -1;
+            }
+            int gagnant = getWinner(getVerticalLine(ligne, colonne));
             if (gagnant != -1)
             {
                 return gagnant;
             }
-            gagnant = test4Horizontal(ligne, colonne);
+            gagnant = getWinner(getHorizontalLine(ligne, colonne));
             if (gagnant != -1)
             {
                 return gagnant;
             }
-            gagnant = test4Droite(ligne, colonne);
+            gagnant = getWinner(getDroiteLine(ligne, colonne));
             if (gagnant != -1)
             {
                 return gagnant;
             }
-            gagnant = test4Gauche(ligne, colonne);
+            gagnant = getWinner(getGaucheLine(ligne, colonne));
             if (gagnant != -1)
             {
                 return gagnant;
@@ -183,21 +188,14 @@ namespace Puissance4
         /// <param name="ligne"></param>
         /// <param name="colonne"></param>
         /// <returns></returns>
-        private int test4Vertical(int ligne, int colonne)
+        public List<int> getVerticalLine(int ligne, int colonne)
         {
-            int tokenAct = map[ligne, colonne];
-            if (tokenAct == Puissance4.EMPTY_TOKEN)
-            {
-                return -1;
-            }
-
             List<int> line = new List<int>();
-
             for (var i = 0; i < NB_LIGNES; i++)
             {
                 line.Add(map[i, colonne]);
             }
-            return test4Array(line);
+            return line;
         }
 
         /// <summary>
@@ -206,22 +204,15 @@ namespace Puissance4
         /// <param name="ligne"></param>
         /// <param name="colonne"></param>
         /// <returns></returns>
-        private int test4Horizontal(int ligne, int colonne)
+        private List<int> getHorizontalLine(int ligne, int colonne)
         {
-
-            int tokenAct = map[ligne, colonne];
-            if (tokenAct == Puissance4.EMPTY_TOKEN)
-            {
-                return -1;
-            }
-
             List<int> line = new List<int>();
 
             for (var i = 0; i < NB_COLONNES; i++)
             {
                 line.Add(map[ligne , i]);
             }
-            return test4Array(line);
+            return line;
         }
 
         /// <summary>
@@ -230,13 +221,8 @@ namespace Puissance4
         /// <param name="ligne"></param>
         /// <param name="colonne"></param>
         /// <returns></returns>
-        private int test4Gauche(int ligne, int colonne)
+        public List<int> getGaucheLine(int ligne, int colonne)
         {
-            int tokenAct = map[ligne, colonne];
-            if (tokenAct == Puissance4.EMPTY_TOKEN)
-            {
-                return -1;
-            }
 
             int nbVal = NB_LIGNES < NB_COLONNES ? NB_LIGNES - ligne : NB_COLONNES - colonne;
             int startLine = 0;
@@ -262,7 +248,7 @@ namespace Puissance4
                     break;
                 }
             }
-            return test4Array(line);
+            return line;
         }
 
         /// <summary>
@@ -271,15 +257,8 @@ namespace Puissance4
         /// <param name="ligne"></param>
         /// <param name="colonne"></param>
         /// <returns></returns>
-        private int test4Droite(int ligne, int colonne)
+        public List<int> getDroiteLine(int ligne, int colonne)
         {
-            int tokenAct = map[ligne, colonne];
-            if (tokenAct == Puissance4.EMPTY_TOKEN)
-            {
-                return -1;
-            }
-
-            
             int startLine = NB_LIGNES-1;
             if (ligne + colonne < NB_LIGNES)
             {
@@ -289,6 +268,10 @@ namespace Puissance4
             if (colonne - ligne >= 0)
             {
                 startColonne = colonne - ligne;
+            }
+            else
+            {
+                startColonne = colonne;
             }
 
             List<int> line =new List<int>();
@@ -304,7 +287,7 @@ namespace Puissance4
                     break;
                 }
             }
-            return test4Array(line);
+            return line;
         }
 
         /// <summary>
@@ -312,34 +295,31 @@ namespace Puissance4
         /// </summary>
         /// <param name="line"></param>
         /// <returns>return -1 on not found else return actual token</returns>
-        private int test4Array(List<int> line)
+        private int getWinner(List<int> line)
         {
-            int actualToken = -1;
-            int count = 0;
+            String str = "";
+            String strPlayer = "";
+            String strIA = "";
             for (int i = 0; i < line.Count; i++)
             {
-                if (actualToken == Puissance4.EMPTY_TOKEN)
-                {
-                    actualToken = -1;
-                }
-                if (line[i] != actualToken)
-                {                    
-                    actualToken = line[i];
-                    count = 0;
-                }
-                else
-                {
-                    count++;
-                }
-
-                if (count == 3 && actualToken!=Puissance4.EMPTY_TOKEN)
-                {
-                    return actualToken;
-                }
+                str += line[i];
             }
 
+            for (int i = 0; i < Puissance4.TOKEN_IN_A_ROW_TO_WIN; i++)
+            {
+                strPlayer += Puissance4.PLAYER_TOKEN;
+                strIA += Puissance4.IA_TOKEN;
+            }
+
+            if (str.Contains(strPlayer))
+            {
+                return Puissance4.PLAYER_TOKEN;
+            }
+            else if (str.Contains(strIA))
+            {
+                return Puissance4.IA_TOKEN;
+            }
             return -1;
-            
         }
     }
 }
