@@ -1,2 +1,1 @@
 C:\Users\EpulInfo\Documents\Visual Studio 2013\Projects\XNA_Puissance4\Puissance4\Puissance4\Puissance4Content\obj\x86\Debug\Puissance4Content.contentprojResolveAssemblyReference.cache
-C:\Users\Darkos\Documents\GitHub\XNA_Puissance4\Puissance4\Puissance4\Puissance4Content\obj\x86\Debug\Puissance4Content.contentprojResolveAssemblyReference.cache

@@ -11,15 +11,6 @@
       <Time>2015-12-21T21:17:07.2986271+01:00</Time>
     </Item>
     <Item>
-      <Source>Images\cursor.png</Source>
-      <Name>Images\cursor</Name>
-      <Importer>TextureImporter</Importer>
-      <Processor>TextureProcessor</Processor>
-      <Options>None</Options>
-      <Output>C:\Users\Darkos\Documents\GitHub\XNA_Puissance4\Puissance4\Puissance4\Puissance4\bin\x86\Debug\Content\Images\cursor.xnb</Output>
-      <Time>2015-12-21T21:16:35.4028028+01:00</Time>
-    </Item>
-    <Item>
       <Source>Images\pion_rouge.png</Source>
       <Name>Images\pion_rouge</Name>
       <Importer>TextureImporter</Importer>
@@ -36,6 +27,33 @@
       <Options>None</Options>
       <Output>C:\Users\Darkos\Documents\GitHub\XNA_Puissance4\Puissance4\Puissance4\Puissance4\bin\x86\Debug\Content\Images\pion_jaune.xnb</Output>
       <Time>2015-12-16T10:52:46.1144727+01:00</Time>
+    </Item>
+    <Item>
+      <Source>Images\cursor.png</Source>
+      <Name>Images\cursor</Name>
+      <Importer>TextureImporter</Importer>
+      <Processor>TextureProcessor</Processor>
+      <Options>None</Options>
+      <Output>C:\Users\Darkos\Documents\GitHub\XNA_Puissance4\Puissance4\Puissance4\Puissance4\bin\x86\Debug\Content\Images\cursor.xnb</Output>
+      <Time>2015-12-21T21:16:35.4028028+01:00</Time>
+    </Item>
+    <Item>
+      <Source>Font\ArialTitle.spritefont</Source>
+      <Name>Font\ArialTitle</Name>
+      <Importer>FontDescriptionImporter</Importer>
+      <Processor>FontDescriptionProcessor</Processor>
+      <Options>None</Options>
+      <Output>C:\Users\Darkos\Documents\GitHub\XNA_Puissance4\Puissance4\Puissance4\Puissance4\bin\x86\Debug\Content\Font\ArialTitle.xnb</Output>
+      <Time>2015-12-23T20:52:25.55929+01:00</Time>
+    </Item>
+    <Item>
+      <Source>Font\ArialText.spritefont</Source>
+      <Name>Font\ArialText</Name>
+      <Importer>FontDescriptionImporter</Importer>
+      <Processor>FontDescriptionProcessor</Processor>
+      <Options>None</Options>
+      <Output>C:\Users\Darkos\Documents\GitHub\XNA_Puissance4\Puissance4\Puissance4\Puissance4\bin\x86\Debug\Content\Font\ArialText.xnb</Output>
+      <Time>2015-12-23T20:53:38.6926888+01:00</Time>
     </Item>
     <BuildSuccessful>true</BuildSuccessful>
     <Settings>

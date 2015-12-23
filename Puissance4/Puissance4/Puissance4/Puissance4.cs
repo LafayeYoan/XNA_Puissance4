@@ -11,16 +11,23 @@ using Microsoft.Xna.Framework.Media;
 
 namespace Puissance4
 {
-    /// <summary>
-    /// This is the main type for your game
-    /// </summary>
     public class Puissance4 : Microsoft.Xna.Framework.Game
     {
-       
+        //Jeu en cours (pour appel de la methode exit)
+        public static Puissance4 game;
+
+        //Taille des blocks
         public const int TAILLE_BLOCK = 80;
+
+        //Offsets
         public const int OFFSET_X = 140;
         public const int OFFSET_Y = 140;
 
+        //Taille fenetre
+        public const int GAME_HEIGHT = 640;
+        public const int GAME_WIDTH = 850;
+
+        //Valeurs des jetons
         public const int EMPTY_TOKEN = 0;
         public const int PLAYER1_TOKEN = 1;
         public const int PLAYER2_TOKEN = 2;
@@ -30,26 +37,26 @@ namespace Puissance4
         /// </summary>
         public const int TOKEN_IN_A_ROW_TO_WIN = 4;
 
-        private Map map;
-
         GraphicsDeviceManager graphics;
         SpriteBatch spriteBatch;
 
-        //ObjectPuissace4 
+        //Objets pour le jeu
         public static ObjetPuissance4 cursor;
         public static ObjetPuissance4 pion_J1;
         public static ObjetPuissance4 pion_J2;
         public static ObjetPuissance4 cadre;
-        
+
+        //Objets pour le menu
+        public static SpriteFont titleFont;
+        public static SpriteFont textFont;
 
         public Puissance4()
         {
-            map = new Map();
+            game = this;
             graphics = new GraphicsDeviceManager(this);
             Content.RootDirectory = "Content";
 
-            new JoueurHumain(PLAYER1_TOKEN, map);
-            new JoueurIA(PLAYER2_TOKEN, map);
+            Phase.setPhase(new PhaseMenu());
         }
 
         /// <summary>
@@ -71,15 +78,17 @@ namespace Puissance4
         {
             spriteBatch = new SpriteBatch(GraphicsDevice);
 
-            graphics.PreferredBackBufferWidth = 1024;
-            graphics.PreferredBackBufferHeight = 660;
+            graphics.PreferredBackBufferWidth = GAME_WIDTH;
+            graphics.PreferredBackBufferHeight = GAME_HEIGHT;
             graphics.ApplyChanges();
 
             cursor = new ObjetPuissance4(Content.Load<Texture2D>("Images\\cursor"), new Vector2(0f, 0f), new Vector2(Puissance4.TAILLE_BLOCK, Puissance4.TAILLE_BLOCK));
             pion_J1 = new ObjetPuissance4(Content.Load<Texture2D>("Images\\pion_rouge"), new Vector2(0f, 0f), new Vector2(Puissance4.TAILLE_BLOCK, Puissance4.TAILLE_BLOCK));
             pion_J2 = new ObjetPuissance4(Content.Load<Texture2D>("Images\\pion_jaune"), new Vector2(0f, 0f), new Vector2(Puissance4.TAILLE_BLOCK, Puissance4.TAILLE_BLOCK));
             cadre = new ObjetPuissance4(Content.Load<Texture2D>("Images\\cadre"), new Vector2(0f, 0f), new Vector2(Puissance4.TAILLE_BLOCK, Puissance4.TAILLE_BLOCK));
-            
+
+            titleFont = Content.Load<SpriteFont>("Font\\ArialTitle");
+            textFont = Content.Load<SpriteFont>("Font\\ArialText");
         }
 
         /// <summary>
@@ -102,16 +111,13 @@ namespace Puissance4
             if (GamePad.GetState(PlayerIndex.One).Buttons.Back == ButtonState.Pressed)
                 this.Exit();
 
-            Joueur.getPlayer().Update(gameTime);
+            Phase.getPhase().Update(gameTime);
 
             
             //TODO : Mettre à jour l'affichage
             base.Update(gameTime);
         }
 
-        
-
-        
 
         /// <summary>
         /// This is called when the game should draw itself.
@@ -123,14 +129,10 @@ namespace Puissance4
 
             spriteBatch.Begin();
 
-            Joueur.getPlayer().Draw(gameTime, spriteBatch);
-
-            map.Draw(gameTime, spriteBatch);
+            Phase.getPhase().Draw(gameTime, spriteBatch);            
             
             spriteBatch.End();
             base.Draw(gameTime);
         }
-
-        
     }
 }

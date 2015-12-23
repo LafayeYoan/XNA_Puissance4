@@ -1,4 +1,6 @@
 Content\Images\cadre.xnb
-Content\Images\cursor.xnb
 Content\Images\pion_rouge.xnb
 Content\Images\pion_jaune.xnb
+Content\Images\cursor.xnb
+Content\Font\ArialTitle.xnb
+Content\Font\ArialText.xnb

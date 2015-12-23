@@ -30,6 +30,7 @@ namespace Puissance4
 
         public static Joueur nextPlayer()
         {
+            Joueur joueurActuel = getPlayer();
             if (actualIndex + 1 < players.Count)
             {
                 actualIndex++;
@@ -38,12 +39,20 @@ namespace Puissance4
             {
                 actualIndex = 0;
             }
-
+            if (players[actualIndex] is JoueurHumain && !(joueurActuel is JoueurIA))
+            {
+                JoueurHumain jh = getPlayer() as JoueurHumain;
+                jh.hasToValidate();
+            }
             return getPlayer();
 
         }
         public static Joueur getPlayer(){
+
             return players[actualIndex];
+        }
+        public static void cleanJoueurs(){
+            players.Clear();
         }
     }
 }
