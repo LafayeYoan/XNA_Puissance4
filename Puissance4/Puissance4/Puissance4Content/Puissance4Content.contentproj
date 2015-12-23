@@ -35,13 +35,13 @@
       <Importer>TextureImporter</Importer>
       <Processor>TextureProcessor</Processor>
     </Compile>
-    <Compile Include="Images\pion_IA.png">
-      <Name>pion_IA</Name>
+    <Compile Include="Images\pion_rouge.png">
+      <Name>pion_rouge</Name>
       <Importer>TextureImporter</Importer>
       <Processor>TextureProcessor</Processor>
     </Compile>
-    <Compile Include="Images\pion_Joueur.png">
-      <Name>pion_Joueur</Name>
+    <Compile Include="Images\pion_jaune.png">
+      <Name>pion_jaune</Name>
       <Importer>TextureImporter</Importer>
       <Processor>TextureProcessor</Processor>
     </Compile>

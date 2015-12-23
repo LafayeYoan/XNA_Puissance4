@@ -8,7 +8,7 @@ using Microsoft.Xna.Framework.Graphics;
 
 namespace Puissance4
 {
-    class ObjetPuissance4
+    public class ObjetPuissance4
     {
         private Texture2D _texture;
         private Vector2 _position;

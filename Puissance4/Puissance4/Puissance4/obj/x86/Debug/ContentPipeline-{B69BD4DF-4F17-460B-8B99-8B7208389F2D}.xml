@@ -11,24 +11,6 @@
       <Time>2015-12-21T21:17:07.2986271+01:00</Time>
     </Item>
     <Item>
-      <Source>Images\pion_IA.png</Source>
-      <Name>Images\pion_IA</Name>
-      <Importer>TextureImporter</Importer>
-      <Processor>TextureProcessor</Processor>
-      <Options>None</Options>
-      <Output>C:\Users\Darkos\Documents\GitHub\XNA_Puissance4\Puissance4\Puissance4\Puissance4\bin\x86\Debug\Content\Images\pion_IA.xnb</Output>
-      <Time>2015-12-16T10:52:46.1134726+01:00</Time>
-    </Item>
-    <Item>
-      <Source>Images\pion_Joueur.png</Source>
-      <Name>Images\pion_Joueur</Name>
-      <Importer>TextureImporter</Importer>
-      <Processor>TextureProcessor</Processor>
-      <Options>None</Options>
-      <Output>C:\Users\Darkos\Documents\GitHub\XNA_Puissance4\Puissance4\Puissance4\Puissance4\bin\x86\Debug\Content\Images\pion_Joueur.xnb</Output>
-      <Time>2015-12-16T10:52:46.1144727+01:00</Time>
-    </Item>
-    <Item>
       <Source>Images\cursor.png</Source>
       <Name>Images\cursor</Name>
       <Importer>TextureImporter</Importer>
@@ -36,6 +18,24 @@
       <Options>None</Options>
       <Output>C:\Users\Darkos\Documents\GitHub\XNA_Puissance4\Puissance4\Puissance4\Puissance4\bin\x86\Debug\Content\Images\cursor.xnb</Output>
       <Time>2015-12-21T21:16:35.4028028+01:00</Time>
+    </Item>
+    <Item>
+      <Source>Images\pion_rouge.png</Source>
+      <Name>Images\pion_rouge</Name>
+      <Importer>TextureImporter</Importer>
+      <Processor>TextureProcessor</Processor>
+      <Options>None</Options>
+      <Output>C:\Users\Darkos\Documents\GitHub\XNA_Puissance4\Puissance4\Puissance4\Puissance4\bin\x86\Debug\Content\Images\pion_rouge.xnb</Output>
+      <Time>2015-12-16T10:52:46.1134726+01:00</Time>
+    </Item>
+    <Item>
+      <Source>Images\pion_jaune.png</Source>
+      <Name>Images\pion_jaune</Name>
+      <Importer>TextureImporter</Importer>
+      <Processor>TextureProcessor</Processor>
+      <Options>None</Options>
+      <Output>C:\Users\Darkos\Documents\GitHub\XNA_Puissance4\Puissance4\Puissance4\Puissance4\bin\x86\Debug\Content\Images\pion_jaune.xnb</Output>
+      <Time>2015-12-16T10:52:46.1144727+01:00</Time>
     </Item>
     <BuildSuccessful>true</BuildSuccessful>
     <Settings>

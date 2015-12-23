@@ -2,12 +2,36 @@
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
+using Microsoft.Xna.Framework;
+using Microsoft.Xna.Framework.Audio;
+using Microsoft.Xna.Framework.Content;
+using Microsoft.Xna.Framework.GamerServices;
+using Microsoft.Xna.Framework.Graphics;
+using Microsoft.Xna.Framework.Input;
+using Microsoft.Xna.Framework.Media;
 
 namespace Puissance4
 {
-    class IAJoueur
+    class JoueurIA:Joueur
     {
         public const int PROFONDEUR = 8;
+
+        public JoueurIA(int playerToken, Map map)
+            : base(playerToken, map)
+        {
+
+        }
+
+
+        public override void Update(GameTime gametime)
+        {
+            Joueur.gagnant = map.addToken(getBestColumn(map), this.playerToken);
+            Joueur.nextPlayer();
+        }
+        public override void Draw(GameTime gametime, SpriteBatch spriteBatch)
+        {
+            //Pas de draw specific
+        }
 
         /// <summary>
         /// Retourne la colone gagnante pour L'IA
@@ -46,7 +70,7 @@ namespace Puissance4
             //On verifie si le joueur gagne en jouant a la position, si oui on retourne cette colonne a jouer
             for (int i = 0; i < Map.NB_COLONNES; i++)
             {
-                if (map.addToken(i, Puissance4.PLAYER_TOKEN) == Puissance4.PLAYER_TOKEN)
+                if (map.addToken(i, Puissance4.PLAYER1_TOKEN) == Puissance4.PLAYER1_TOKEN)
                 {
                     map.removeLastInsertedToken(i);
                     return i;
@@ -58,7 +82,7 @@ namespace Puissance4
             //On test les places, si on gagne, on retourne cette colonne
             for (int i = 0; i < Map.NB_COLONNES; i++)
             {
-                if (map.addToken(i, Puissance4.IA_TOKEN) == Puissance4.IA_TOKEN)
+                if (map.addToken(i, Puissance4.PLAYER2_TOKEN) == Puissance4.PLAYER2_TOKEN)
                 {
                     map.removeLastInsertedToken(i);
                     return i;
@@ -77,7 +101,7 @@ namespace Puissance4
                     Map copie = map.getCopy();
 
                     //On ajoute un token Joueur
-                    map.addToken(i, Puissance4.PLAYER_TOKEN);
+                    map.addToken(i, Puissance4.PLAYER1_TOKEN);
 
                     //on appelle le recursif
                     return recursiveTest(copie, profondeur - 1);
@@ -97,7 +121,7 @@ namespace Puissance4
 
             for (int i = 0; i < nbInARow; i++)
             {
-                strToTest += Puissance4.PLAYER_TOKEN;
+                strToTest += Puissance4.PLAYER1_TOKEN;
             }
             strToTest += Puissance4.EMPTY_TOKEN;
             return str.Contains(strToTest);

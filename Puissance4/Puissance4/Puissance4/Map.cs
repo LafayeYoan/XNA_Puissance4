@@ -2,6 +2,13 @@
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
+using Microsoft.Xna.Framework;
+using Microsoft.Xna.Framework.Audio;
+using Microsoft.Xna.Framework.Content;
+using Microsoft.Xna.Framework.GamerServices;
+using Microsoft.Xna.Framework.Graphics;
+using Microsoft.Xna.Framework.Input;
+using Microsoft.Xna.Framework.Media;
 
 namespace Puissance4
 {
@@ -25,6 +32,7 @@ namespace Puissance4
         /// </summary>
         private int[,] map;
 
+
         /// <summary>
         /// Constructeur
         /// </summary>
@@ -46,8 +54,9 @@ namespace Puissance4
         /// <param name="ligne"></param>
         /// <param name="colonne"></param>
         /// <returns></returns>
-        public int getValue(int ligne, int colonne){
-            return this.map[ligne,colonne];
+        public int getValue(int ligne, int colonne)
+        {
+            return this.map[ligne, colonne];
         }
 
 
@@ -58,7 +67,8 @@ namespace Puissance4
         /// <returns></returns>
         public bool columnHaveFreeSpace(int col)
         {
-            if(map[0,col]==Puissance4.EMPTY_TOKEN){
+            if (map[0, col] == Puissance4.EMPTY_TOKEN)
+            {
                 return true;
             }
             return false;
@@ -71,10 +81,11 @@ namespace Puissance4
         /// <returns></returns>
         public bool columnIsEmpty(int col)
         {
-            for(var i = 0; i < NB_LIGNES ; i++){
+            for (var i = 0; i < NB_LIGNES; i++)
+            {
                 if (map[i, col] != Puissance4.EMPTY_TOKEN)
                 {
-                   return false;
+                    return false;
                 }
             }
             return true;
@@ -88,29 +99,31 @@ namespace Puissance4
         /// <returns>Token du gagnant</returns>
         public int addToken(int col, int tokenVal)
         {
-            if(!columnHaveFreeSpace(col)){
+            if (!columnHaveFreeSpace(col))
+            {
                 return -1;
             }
 
             if (columnIsEmpty(col))
             {
-                map[NB_LIGNES-1, col] = tokenVal;
+                map[NB_LIGNES - 1, col] = tokenVal;
                 return getGagnant(NB_LIGNES - 1, col);
             }
 
-            for(var i = 0; i < NB_LIGNES ; i++){
+            for (var i = 0; i < NB_LIGNES; i++)
+            {
                 if (map[i, col] != Puissance4.EMPTY_TOKEN)
                 {
-                    map[i-1,col]=tokenVal;
+                    map[i - 1, col] = tokenVal;
                     //test si ajout ok
 
 
-                    return getGagnant(i-1,col);
+                    return getGagnant(i - 1, col);
                 }
             }
 
             return -1;
-            
+
         }
 
         /// <summary>
@@ -210,7 +223,7 @@ namespace Puissance4
 
             for (var i = 0; i < NB_COLONNES; i++)
             {
-                line.Add(map[ligne , i]);
+                line.Add(map[ligne, i]);
             }
             return line;
         }
@@ -240,7 +253,8 @@ namespace Puissance4
 
             for (var i = 0; i < (NB_LIGNES < NB_COLONNES ? NB_LIGNES : NB_COLONNES); i++)
             {
-                if (startLine + i<NB_LIGNES && startColonne + i<NB_COLONNES){
+                if (startLine + i < NB_LIGNES && startColonne + i < NB_COLONNES)
+                {
                     line.Add(map[startLine + i, startColonne + i]);
                 }
                 else
@@ -259,7 +273,7 @@ namespace Puissance4
         /// <returns></returns>
         public List<int> getDroiteLine(int ligne, int colonne)
         {
-            int startLine = NB_LIGNES-1;
+            int startLine = NB_LIGNES - 1;
             if (ligne + colonne < NB_LIGNES)
             {
                 startLine = ligne + colonne;
@@ -274,7 +288,7 @@ namespace Puissance4
                 startColonne = colonne;
             }
 
-            List<int> line =new List<int>();
+            List<int> line = new List<int>();
 
             for (var i = 0; i < (NB_LIGNES < NB_COLONNES ? NB_LIGNES : NB_COLONNES); i++)
             {
@@ -307,19 +321,52 @@ namespace Puissance4
 
             for (int i = 0; i < Puissance4.TOKEN_IN_A_ROW_TO_WIN; i++)
             {
-                strPlayer += Puissance4.PLAYER_TOKEN;
-                strIA += Puissance4.IA_TOKEN;
+                strPlayer += Puissance4.PLAYER1_TOKEN;
+                strIA += Puissance4.PLAYER2_TOKEN;
             }
 
             if (str.Contains(strPlayer))
             {
-                return Puissance4.PLAYER_TOKEN;
+                return Puissance4.PLAYER1_TOKEN;
             }
             else if (str.Contains(strIA))
             {
-                return Puissance4.IA_TOKEN;
+                return Puissance4.PLAYER2_TOKEN;
             }
             return -1;
+        }
+
+        public void Draw(GameTime gametime, SpriteBatch spriteBatch)
+        {
+            for (int x = 0; x < Map.NB_LIGNES; x++)
+            {
+                for (int y = 0; y < Map.NB_COLONNES; y++)
+                {
+                    if (this.getValue(x, y) == Puissance4.EMPTY_TOKEN)
+                    {
+                        DrawBlock(spriteBatch,Puissance4.cadre, x, y);
+                    }
+
+                    if (this.getValue(x, y) == Puissance4.PLAYER1_TOKEN)
+                    {
+                        DrawBlock(spriteBatch, Puissance4.pion_J1, x, y);
+                    }
+
+                    if (this.getValue(x, y) == Puissance4.PLAYER2_TOKEN)
+                    {
+                        DrawBlock(spriteBatch, Puissance4.pion_J2, x, y);
+                    }
+                }
+            }
+
+        }
+        private void DrawBlock(SpriteBatch spriteBatch, ObjetPuissance4 obj, int x, int y)
+        {
+            int xpos, ypos;
+            xpos = Puissance4.OFFSET_X + x * Puissance4.TAILLE_BLOCK;
+            ypos = Puissance4.OFFSET_Y + y * Puissance4.TAILLE_BLOCK;
+            Vector2 pos = new Vector2(ypos, xpos);
+            spriteBatch.Draw(obj.Texture, pos, Color.White);
         }
     }
 }

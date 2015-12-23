@@ -22,8 +22,8 @@ namespace Puissance4
         public const int OFFSET_Y = 140;
 
         public const int EMPTY_TOKEN = 0;
-        public const int PLAYER_TOKEN = 1;
-        public const int IA_TOKEN = 2;
+        public const int PLAYER1_TOKEN = 1;
+        public const int PLAYER2_TOKEN = 2;
 
         /// <summary>
         /// Nombre de jeton pour gagner
@@ -31,33 +31,25 @@ namespace Puissance4
         public const int TOKEN_IN_A_ROW_TO_WIN = 4;
 
         private Map map;
-        private String direction;
-
-        private Boolean isJoueurTurn;
-        private Boolean lockKey;
-        //cursorPosition représente le curseur du joueur pour choisir où placer son pion
-        private int cursorPosition;
-
-        private ObjetPuissance4 cadre;
-        private ObjetPuissance4 cursor;
-        private ObjetPuissance4 pion_IA;
-        private ObjetPuissance4 pion_Joueur;
-
-        private int gagnant = -1;
-
 
         GraphicsDeviceManager graphics;
         SpriteBatch spriteBatch;
 
+        //ObjectPuissace4 
+        public static ObjetPuissance4 cursor;
+        public static ObjetPuissance4 pion_J1;
+        public static ObjetPuissance4 pion_J2;
+        public static ObjetPuissance4 cadre;
+        
+
         public Puissance4()
         {
-            isJoueurTurn = false;
-            lockKey = false;
-            cursorPosition = 0;
-
             map = new Map();
             graphics = new GraphicsDeviceManager(this);
             Content.RootDirectory = "Content";
+
+            new JoueurHumain(PLAYER1_TOKEN, map);
+            new JoueurIA(PLAYER2_TOKEN, map);
         }
 
         /// <summary>
@@ -82,11 +74,12 @@ namespace Puissance4
             graphics.PreferredBackBufferWidth = 1024;
             graphics.PreferredBackBufferHeight = 660;
             graphics.ApplyChanges();
- 
-            cadre = new ObjetPuissance4(Content.Load<Texture2D>("Images\\cadre"), new Vector2(0f, 0f), new Vector2(TAILLE_BLOCK, TAILLE_BLOCK));
-            pion_IA = new ObjetPuissance4(Content.Load<Texture2D>("Images\\pion_IA"), new Vector2(0f, 0f), new Vector2(TAILLE_BLOCK, TAILLE_BLOCK));
-            pion_Joueur = new ObjetPuissance4(Content.Load<Texture2D>("Images\\pion_Joueur"), new Vector2(0f, 0f), new Vector2(TAILLE_BLOCK, TAILLE_BLOCK));
-            cursor = new ObjetPuissance4(Content.Load<Texture2D>("Images\\cursor"), new Vector2(0f, 0f), new Vector2(TAILLE_BLOCK, TAILLE_BLOCK));
+
+            cursor = new ObjetPuissance4(Content.Load<Texture2D>("Images\\cursor"), new Vector2(0f, 0f), new Vector2(Puissance4.TAILLE_BLOCK, Puissance4.TAILLE_BLOCK));
+            pion_J1 = new ObjetPuissance4(Content.Load<Texture2D>("Images\\pion_rouge"), new Vector2(0f, 0f), new Vector2(Puissance4.TAILLE_BLOCK, Puissance4.TAILLE_BLOCK));
+            pion_J2 = new ObjetPuissance4(Content.Load<Texture2D>("Images\\pion_jaune"), new Vector2(0f, 0f), new Vector2(Puissance4.TAILLE_BLOCK, Puissance4.TAILLE_BLOCK));
+            cadre = new ObjetPuissance4(Content.Load<Texture2D>("Images\\cadre"), new Vector2(0f, 0f), new Vector2(Puissance4.TAILLE_BLOCK, Puissance4.TAILLE_BLOCK));
+            
         }
 
         /// <summary>
@@ -109,86 +102,16 @@ namespace Puissance4
             if (GamePad.GetState(PlayerIndex.One).Buttons.Back == ButtonState.Pressed)
                 this.Exit();
 
-            if (isJoueurTurn == true)
-            {
-                KeyboardState keyboard = Keyboard.GetState();
-                if (keyboard.IsKeyDown(Keys.Right) && !lockKey)
-                {
-                    direction = "Right";
-                    if (cursorPosition < (Map.NB_COLONNES - 1))
-                    {
-                        cursorPosition ++;
-                    }
-                    lockKey = true;
-                }
-                if (keyboard.IsKeyDown(Keys.Left) && !lockKey)
-                {
-                    direction = "Left";
-                    if (cursorPosition > 0)
-                    {
-                        cursorPosition--;
-                    }
-                    lockKey = true;
-                }
-                if (keyboard.IsKeyDown(Keys.Down) && !lockKey)
-                {
-                    direction = "Down";
-                    if (map.columnHaveFreeSpace(cursorPosition))
-                    {
-                        gagnant = map.addToken(cursorPosition, PLAYER_TOKEN);
-                        isJoueurTurn = false;
-                    }
-                    //TODO : Transparence du curseur
-                    lockKey = true;
-                }
-
-                switch (direction)
-                {
-                    case("Right"):
-                        if (keyboard.IsKeyUp(Keys.Right))
-                            lockKey = false;
-                        break;
-                    case ("Left"):
-                        if (keyboard.IsKeyUp(Keys.Left))
-                            lockKey = false;
-                        break;
-                    case ("Down"):
-                        if (keyboard.IsKeyUp(Keys.Down))
-                            lockKey = false;
-                        break;
-                }
-                
-            }
-            else
-            {
-                //Tour IA
-                gagnant = map.addToken(IAJoueur.getBestColumn(map), Puissance4.IA_TOKEN);
-                isJoueurTurn = true;
-            }
+            Joueur.getPlayer().Update(gameTime);
 
             
             //TODO : Mettre à jour l'affichage
             base.Update(gameTime);
         }
 
-        private void DrawCursor(){
-            
-            int xpos, ypos;
-            xpos = OFFSET_X - TAILLE_BLOCK;
-            ypos = OFFSET_Y + cursorPosition * TAILLE_BLOCK;
-            Vector2 pos = new Vector2(ypos, xpos);
-            spriteBatch.Draw(cursor.Texture, pos, Color.White);
-            
-        }
+        
 
-        private void DrawBlock(ObjetPuissance4 obj, int x, int y)
-        {
-            int xpos, ypos;
-            xpos = OFFSET_X + x * TAILLE_BLOCK;
-            ypos = OFFSET_Y + y * TAILLE_BLOCK;
-            Vector2 pos = new Vector2(ypos, xpos);
-            spriteBatch.Draw(obj.Texture, pos, Color.White);
-        }
+        
 
         /// <summary>
         /// This is called when the game should draw itself.
@@ -199,29 +122,15 @@ namespace Puissance4
             GraphicsDevice.Clear(Color.Black);
 
             spriteBatch.Begin();
-            for (int x = 0; x < Map.NB_LIGNES; x++)
-            {
-                for (int y = 0; y < Map.NB_COLONNES; y++)
-                {
-                    if (map.getValue(x, y) == EMPTY_TOKEN)
-                    {
-                        DrawBlock(cadre,  x, y);
-                    }
 
-                    if (map.getValue(x, y) == PLAYER_TOKEN)
-                    {
-                        DrawBlock(pion_Joueur, x, y);
-                    }
+            Joueur.getPlayer().Draw(gameTime, spriteBatch);
 
-                    if (map.getValue(x, y) == IA_TOKEN)
-                    {
-                        DrawBlock(pion_IA,  x, y);
-                    }
-                }
-            }
-            DrawCursor();
+            map.Draw(gameTime, spriteBatch);
+            
             spriteBatch.End();
             base.Draw(gameTime);
         }
+
+        
     }
 }
