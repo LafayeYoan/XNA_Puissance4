@@ -8,13 +8,13 @@ namespace Puissance4
     /// <summary>
     /// Phase de menu
     /// </summary>
-    class PhaseMenu:Phase
+    class PhaseMenuMain:Phase
     {
-        MainMenu menu;
-        public PhaseMenu()
+        MenuMain menu;
+        public PhaseMenuMain()
             : base()
         {
-            this.menu = new MainMenu();
+            this.menu = new MenuMain();
         }
 
         public override void Draw(Microsoft.Xna.Framework.GameTime gametime, Microsoft.Xna.Framework.Graphics.SpriteBatch spriteBatch)

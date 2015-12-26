@@ -16,12 +16,20 @@ namespace Puissance4
         public const int N_MAX_PLAYERS = 2;
         private static int actualIndex =0;
         private static List<Joueur> players = new List<Joueur>();
-        public static int gagnant;
+        protected static int gagnant;
+        private string nomJoueur;
+
+        public string NomJoueur
+        {
+            get { return nomJoueur; }
+            set { nomJoueur = value; }
+        }
 
         public Joueur(int playerToken, Map map)
         {
             this.map = map;
             this.playerToken = playerToken;
+            //init of actual index
             players.Add(this);
         }
 
@@ -30,7 +38,8 @@ namespace Puissance4
 
         public static Joueur nextPlayer()
         {
-            Joueur joueurActuel = getPlayer();
+            Joueur joueurActuel = getActualPlayer();
+
             if (actualIndex + 1 < players.Count)
             {
                 actualIndex++;
@@ -41,18 +50,30 @@ namespace Puissance4
             }
             if (players[actualIndex] is JoueurHumain && !(joueurActuel is JoueurIA))
             {
-                JoueurHumain jh = getPlayer() as JoueurHumain;
+                JoueurHumain jh = getActualPlayer() as JoueurHumain;
                 jh.hasToValidate();
             }
-            return getPlayer();
+            return getActualPlayer();
 
         }
-        public static Joueur getPlayer(){
+        public static Joueur getActualPlayer(){
 
             return players[actualIndex];
         }
         public static void cleanJoueurs(){
             players.Clear();
+            Joueur.gagnant = -1;
+
+        }
+
+        public static Joueur getPlayer(int token)
+        {
+            return players.Find(j => j.playerToken == token);
+        }
+
+        public static Joueur getWinner()
+        {
+            return Joueur.getPlayer(gagnant);
         }
     }
 }

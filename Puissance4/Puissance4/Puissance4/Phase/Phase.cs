@@ -47,7 +47,7 @@ namespace Puissance4
         /// <returns></returns>
         public static Phase clean()
         {
-            actualPhase = new PhaseMenu();            
+            actualPhase = new PhaseMenuMain();            
             return getPhase();
         }
 

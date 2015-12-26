@@ -14,7 +14,14 @@ namespace Puissance4
 {
     abstract class Menu
     {
+
         public abstract void Update(GameTime gametime);
         public abstract void Draw(GameTime gametime, SpriteBatch spriteBatch);
+
+        /// <summary>
+        /// Correspond au retour du menu
+        /// </summary>
+        /// <returns></returns>
+        public abstract Phase getNextPhase();
     }
 }
