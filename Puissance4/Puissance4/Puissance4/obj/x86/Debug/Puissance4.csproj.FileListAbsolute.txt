@@ -19,3 +19,4 @@ C:\Users\Darkos\Documents\GitHub\XNA_Puissance4\Puissance4\Puissance4\Puissance4
 C:\Users\Darkos\Documents\GitHub\XNA_Puissance4\Puissance4\Puissance4\Puissance4\bin\x86\Debug\Content\Images\pion_jaune.xnb
 C:\Users\Darkos\Documents\GitHub\XNA_Puissance4\Puissance4\Puissance4\Puissance4\bin\x86\Debug\Content\Font\ArialTitle.xnb
 C:\Users\Darkos\Documents\GitHub\XNA_Puissance4\Puissance4\Puissance4\Puissance4\bin\x86\Debug\Content\Font\ArialText.xnb
+C:\Users\Darkos\Documents\GitHub\XNA_Puissance4\Puissance4\Puissance4\Puissance4\obj\x86\Debug\Puissance4.csprojResolveAssemblyReference.cache

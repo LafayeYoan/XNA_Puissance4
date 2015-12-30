@@ -56,7 +56,7 @@ namespace Puissance4
             graphics = new GraphicsDeviceManager(this);
             Content.RootDirectory = "Content";
 
-            Phase.setPhase(new PhaseMenu());
+            Phase.setPhase(new PhaseMenuMain());
         }
 
         /// <summary>

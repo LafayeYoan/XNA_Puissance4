@@ -75,10 +75,12 @@
     <Compile Include="Joueur\JoueurIA.cs" />
     <Compile Include="Joueur\Joueur.cs" />
     <Compile Include="Joueur\JoueurHumain.cs" />
+    <Compile Include="Menu\MenuGain.cs" />
     <Compile Include="Phase\PhaseJeuVsJoueur.cs" />
-    <Compile Include="Phase\PhaseMenu.cs" />
+    <Compile Include="Phase\PhaseMenuGain.cs" />
+    <Compile Include="Phase\PhaseMenuMain.cs" />
     <Compile Include="Map.cs" />
-    <Compile Include="Menu\MainMenu.cs" />
+    <Compile Include="Menu\MenuMain.cs" />
     <Compile Include="Menu\Menu.cs" />
     <Compile Include="ObjetPuissance4.cs" />
     <Compile Include="Phase\Phase.cs" />

@@ -19,11 +19,9 @@ namespace Puissance4
         private bool lockKey;
         private bool hasPressDownToStart;
 
-        private String nomJoueur;
-
         public JoueurHumain(int playerIndex, Map map, String nomJoueur) : base (playerIndex, map)
         {
-            this.nomJoueur = nomJoueur;
+            base.NomJoueur = nomJoueur;
             this.cursorPosition = 3;
             this.lockKey = false;
             hasPressDownToStart = true;
@@ -85,7 +83,7 @@ namespace Puissance4
                 xpostxt = Puissance4.OFFSET_X - Puissance4.TAILLE_BLOCK;
                 ypostxt = Puissance4.OFFSET_Y;
                 Vector2 postxt = new Vector2(ypostxt, xpostxt);
-                spriteBatch.DrawString(Puissance4.textFont, "Au tour de "+ nomJoueur + ", Appuyer sur Entree pour continuer.", postxt, Color.White);
+                spriteBatch.DrawString(Puissance4.textFont, "Au tour de "+ base.NomJoueur + ", Appuyer sur Entree pour continuer.", postxt, Color.White);
                 return;
             }
             //Draw cursor

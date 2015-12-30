@@ -12,11 +12,11 @@ using Microsoft.Xna.Framework.Media;
 
 namespace Puissance4
 {
-    /// <summary>
-    /// Menu principal
-    /// </summary>
-    class MainMenu:Menu
+    class MenuGain: Menu
     {
+        private Joueur gagnant;
+        private Phase caller;
+
         //Couleur des textes
         private Color titleColor;
         private Color selectedColor;
@@ -35,22 +35,43 @@ namespace Puissance4
         //Enter pressed
         private bool validated;
 
-        public MainMenu()
+        public MenuGain(Joueur gagnant, Phase caller)
             : base()
         {
+            this.gagnant = gagnant;
+            this.caller = caller;
+
             this.titleColor = new Color(255, 0, 0);
             this.itemColor = Color.Azure;
             this.selectedColor = Color.Blue;
             items = new List<string>();
-            items.Add("1 Joueur");
-            items.Add("2 Joueurs");
+            items.Add("Recommencer");
+            items.Add("Menu principal");
             items.Add("Quitter");
 
             selectedIndex = 0;
+
         }
 
-        //Keybord handle
-        public override void Update(GameTime gametime)
+        public override void Draw(Microsoft.Xna.Framework.GameTime gametime, Microsoft.Xna.Framework.Graphics.SpriteBatch spriteBatch)
+        {
+            spriteBatch.DrawString(Puissance4.titleFont,gagnant.NomJoueur + " a gagne!",new Vector2(Puissance4.OFFSET_X, Puissance4.OFFSET_Y), titleColor);
+
+            for (int i = 0; i < items.Count(); i++)
+            {
+                if (i == selectedIndex)
+                {
+                    spriteBatch.DrawString(Puissance4.textFont, items[i], new Vector2(Puissance4.OFFSET_X + 200, Puissance4.OFFSET_Y + 200 + i * 20), selectedColor);
+                }
+                else
+                {
+                    spriteBatch.DrawString(Puissance4.textFont, items[i], new Vector2(Puissance4.OFFSET_X + 200, Puissance4.OFFSET_Y + 200 + i * 20), itemColor);
+                }
+
+            }
+        }
+
+        public override void Update(Microsoft.Xna.Framework.GameTime gametime)
         {
             KeyboardState keyboard = Keyboard.GetState();
             if (keyboard.IsKeyDown(Keys.Down) && !lockKey)
@@ -95,27 +116,7 @@ namespace Puissance4
             }
         }
 
-        //Dessin du menu
-        public override void Draw(GameTime gametime, SpriteBatch spriteBatch)
-        {
-            spriteBatch.DrawString(Puissance4.titleFont, "Puissance 4",new Vector2(Puissance4.OFFSET_X, Puissance4.OFFSET_Y), titleColor);
-
-            for (int i = 0; i < items.Count(); i++)
-            {
-                if (i == selectedIndex)
-                {
-                    spriteBatch.DrawString(Puissance4.textFont, items[i], new Vector2(Puissance4.OFFSET_X+200, Puissance4.OFFSET_Y + 200 + i * 20), selectedColor);
-                }
-                else
-                {
-                    spriteBatch.DrawString(Puissance4.textFont, items[i], new Vector2(Puissance4.OFFSET_X+200, Puissance4.OFFSET_Y + 200 + i * 20), itemColor);
-                }
-                
-            }
-        }
-
-        //Obtenir la phase suivante
-        public Phase getNextPhase()
+        public override Phase getNextPhase()
         {
             if (!validated)
             {
@@ -127,11 +128,18 @@ namespace Puissance4
             }
             else if (selectedIndex == 0)
             {
-                return new PhaseJeuVsIA();
+                if(caller is PhaseJeuVsIA){
+                    return new PhaseJeuVsIA();
+                }
+                else if (caller is PhaseJeuVsJoueur)
+                {
+                    return new PhaseJeuVsIA();
+                }
+                
             }
             else if (selectedIndex == 1)
             {
-                return new PhaseJeuVsJoueur();
+                return new PhaseMenuMain();
             }
             return null;
         }

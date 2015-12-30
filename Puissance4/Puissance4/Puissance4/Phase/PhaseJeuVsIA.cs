@@ -21,12 +21,17 @@ namespace Puissance4
 
         public override void Update(Microsoft.Xna.Framework.GameTime gametime)
         {
-            Joueur.getPlayer().Update(gametime);
+            Joueur.getActualPlayer().Update(gametime);
+            Joueur winner = Joueur.getWinner();
+            if (winner != null)
+            {
+                Phase.setPhase(new PhaseMenuGain(winner,this));
+            }
         }
 
         public override void Draw(Microsoft.Xna.Framework.GameTime gametime, Microsoft.Xna.Framework.Graphics.SpriteBatch spriteBatch)
         {
-            Joueur.getPlayer().Draw(gametime, spriteBatch);
+            Joueur.getActualPlayer().Draw(gametime, spriteBatch);
             map.Draw(gametime, spriteBatch);
         }
     }

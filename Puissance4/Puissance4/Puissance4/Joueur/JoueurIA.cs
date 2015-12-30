@@ -19,7 +19,7 @@ namespace Puissance4
         public JoueurIA(int playerToken, Map map)
             : base(playerToken, map)
         {
-
+            base.NomJoueur = "Ordinateur";
         }
 
 
