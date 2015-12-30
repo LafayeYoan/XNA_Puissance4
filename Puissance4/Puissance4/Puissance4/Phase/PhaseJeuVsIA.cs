@@ -22,11 +22,62 @@ namespace Puissance4
         public override void Update(Microsoft.Xna.Framework.GameTime gametime)
         {
             Joueur.getActualPlayer().Update(gametime);
-            Joueur winner = Joueur.getWinner();
-            if (winner != null)
+
+            if(endOfTheGame())
             {
-                Phase.setPhase(new PhaseMenuGain(winner,this));
+                Joueur winner = Joueur.getWinner();
+                Phase.setPhase(new PhaseMenuGain(winner, this));
             }
+        }
+
+        /* Vérifie si c'est la fin du jeu
+            C'est la fin du jeu si : 
+                - Le tableau est plein
+                - L'IA a aligné 4 pions
+                - Le joueur a aligné 4 pions
+            Retourne vrai si c'est la fin du jeu. Faux sinon.
+            */
+        private bool endOfTheGame()
+        {
+            if(thereIsAWinner() || mapIsFull()) 
+            {
+                return true;
+            }
+            return false;
+        }
+
+        /* Vérifie si un joueur a gagné en alignant 4 pions */
+        private bool thereIsAWinner()
+        {
+            for (int i = 0; i < Map.NB_COLONNES; i++)
+            {
+                for (int j = 0; j < Map.NB_LIGNES; j++)
+                {
+                    if (this.map.getGagnant(j, i) == -1)
+                    {
+
+                    }
+                    else
+                    {
+                        return true;
+                    }
+                }
+            }
+            return false;
+        }
+
+
+        /* Vérifie si le tableau de jeu est plein */
+        private bool mapIsFull()
+        {
+            for (int i = 0; i < Map.NB_COLONNES; i++)
+            {
+                if (this.map.columnHaveFreeSpace(i))
+                {
+                    return false;
+                }
+            }
+            return true;
         }
 
         public override void Draw(Microsoft.Xna.Framework.GameTime gametime, Microsoft.Xna.Framework.Graphics.SpriteBatch spriteBatch)
