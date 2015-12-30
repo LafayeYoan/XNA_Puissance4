@@ -55,17 +55,18 @@ namespace Puissance4
 
         public override void Draw(Microsoft.Xna.Framework.GameTime gametime, Microsoft.Xna.Framework.Graphics.SpriteBatch spriteBatch)
         {
-            spriteBatch.DrawString(Puissance4.titleFont,gagnant.NomJoueur + " a gagne!",new Vector2(Puissance4.OFFSET_X, Puissance4.OFFSET_Y), titleColor);
+            spriteBatch.DrawString(Puissance4.titleFont,gagnant.NomJoueur,new Vector2(Puissance4.OFFSET_X, Puissance4.OFFSET_Y), titleColor);
+            spriteBatch.DrawString(Puissance4.titleFont, " est gagnant !", new Vector2(Puissance4.OFFSET_X, Puissance4.OFFSET_Y + 100), titleColor);
 
             for (int i = 0; i < items.Count(); i++)
             {
                 if (i == selectedIndex)
                 {
-                    spriteBatch.DrawString(Puissance4.textFont, items[i], new Vector2(Puissance4.OFFSET_X + 200, Puissance4.OFFSET_Y + 200 + i * 20), selectedColor);
+                    spriteBatch.DrawString(Puissance4.textFont, items[i], new Vector2(Puissance4.OFFSET_X + 200, Puissance4.OFFSET_Y + 400 + i * 20), selectedColor);
                 }
                 else
                 {
-                    spriteBatch.DrawString(Puissance4.textFont, items[i], new Vector2(Puissance4.OFFSET_X + 200, Puissance4.OFFSET_Y + 200 + i * 20), itemColor);
+                    spriteBatch.DrawString(Puissance4.textFont, items[i], new Vector2(Puissance4.OFFSET_X + 200, Puissance4.OFFSET_Y + 400 + i * 20), itemColor);
                 }
 
             }
