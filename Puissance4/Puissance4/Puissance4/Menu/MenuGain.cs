@@ -134,7 +134,7 @@ namespace Puissance4
                 }
                 else if (caller is PhaseJeuVsJoueur)
                 {
-                    return new PhaseJeuVsIA();
+                    return new PhaseJeuVsJoueur();
                 }
                 
             }
