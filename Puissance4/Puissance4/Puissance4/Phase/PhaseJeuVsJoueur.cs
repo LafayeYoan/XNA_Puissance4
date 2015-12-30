@@ -8,13 +8,11 @@ namespace Puissance4
     //Phase de jeu un Joueur contre un Autre
     class PhaseJeuVsJoueur:Phase
     {
-        private Map map;
 
         public PhaseJeuVsJoueur()
             : base()
         {
             Joueur.cleanJoueurs();
-            this.map = new Map();
             new JoueurHumain(Puissance4.PLAYER1_TOKEN, map,"Premier Joueur");
             new JoueurHumain(Puissance4.PLAYER2_TOKEN, map,"Second Joueur");
         }
@@ -22,9 +20,10 @@ namespace Puissance4
         public override void Update(Microsoft.Xna.Framework.GameTime gametime)
         {
             Joueur.getActualPlayer().Update(gametime);
-            Joueur winner = Joueur.getWinner();
-            if (winner != null)
+
+            if (endOfTheGame())
             {
+                Joueur winner = Joueur.getWinner();
                 Phase.setPhase(new PhaseMenuGain(winner, this));
             }
         }

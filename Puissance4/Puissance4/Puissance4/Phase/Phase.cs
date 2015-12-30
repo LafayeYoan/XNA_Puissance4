@@ -15,10 +15,11 @@ namespace Puissance4
     {
         //Phase actuelle
         private static Phase actualPhase;
+        protected Map map;
 
         public Phase()
         {
-            
+            this.map = new Map();
         }
 
         /// <summary>
@@ -49,6 +50,56 @@ namespace Puissance4
         {
             actualPhase = new PhaseMenuMain();            
             return getPhase();
+        }
+
+        /* Vérifie si c'est la fin du jeu
+            C'est la fin du jeu si : 
+                - Le tableau est plein
+                - L'IA a aligné 4 pions
+                - Le joueur a aligné 4 pions
+            Retourne vrai si c'est la fin du jeu. Faux sinon.
+            */
+        protected bool endOfTheGame()
+        {
+            if (thereIsAWinner() || mapIsFull())
+            {
+                return true;
+            }
+            return false;
+        }
+
+        /* Vérifie si un joueur a gagné en alignant 4 pions */
+        private bool thereIsAWinner()
+        {
+            for (int i = 0; i < Map.NB_COLONNES; i++)
+            {
+                for (int j = 0; j < Map.NB_LIGNES; j++)
+                {
+                    if (this.map.getGagnant(j, i) == -1)
+                    {
+
+                    }
+                    else
+                    {
+                        return true;
+                    }
+                }
+            }
+            return false;
+        }
+
+
+        /* Vérifie si le tableau de jeu est plein */
+        private bool mapIsFull()
+        {
+            for (int i = 0; i < Map.NB_COLONNES; i++)
+            {
+                if (this.map.columnHaveFreeSpace(i))
+                {
+                    return false;
+                }
+            }
+            return true;
         }
 
         public abstract void Update(GameTime gametime);
