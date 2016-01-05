@@ -71,21 +71,7 @@ namespace Puissance4
         /* Vérifie si un joueur a gagné en alignant 4 pions */
         private bool thereIsAWinner()
         {
-            for (int i = 0; i < Map.NB_COLONNES; i++)
-            {
-                for (int j = 0; j < Map.NB_LIGNES; j++)
-                {
-                    if (this.map.getGagnant(j, i) == -1)
-                    {
-
-                    }
-                    else
-                    {
-                        return true;
-                    }
-                }
-            }
-            return false;
+            return Joueur.getWinner() != null;
         }
 
 

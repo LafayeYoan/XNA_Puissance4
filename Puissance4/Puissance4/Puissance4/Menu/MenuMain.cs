@@ -46,6 +46,9 @@ namespace Puissance4
             items.Add("2 Joueurs");
             items.Add("Quitter");
 
+            lockKey = true;
+            direction = "Enter";
+
             selectedIndex = 0;
         }
 

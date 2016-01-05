@@ -49,6 +49,9 @@ namespace Puissance4
             items.Add("Menu principal");
             items.Add("Quitter");
 
+            lockKey = true;
+            direction = "Down";
+
             selectedIndex = 0;
 
         }
@@ -123,11 +126,7 @@ namespace Puissance4
             {
                 return null;
             }
-            if (selectedIndex == 2)
-            {
-                Puissance4.game.Exit();
-            }
-            else if (selectedIndex == 0)
+            if (selectedIndex == 0)
             {
                 if(caller is PhaseJeuVsIA){
                     return new PhaseJeuVsIA();
@@ -141,6 +140,10 @@ namespace Puissance4
             else if (selectedIndex == 1)
             {
                 return new PhaseMenuMain();
+            }
+            else if (selectedIndex == 2)
+            {
+                Puissance4.game.Exit();
             }
             return null;
         }
