@@ -56,6 +56,9 @@ namespace Puissance4
             graphics = new GraphicsDeviceManager(this);
             Content.RootDirectory = "Content";
 
+            //To display the mouse cursor
+            IsMouseVisible = true;
+
             Phase.setPhase(new PhaseMenuMain());
         }
 
@@ -97,7 +100,7 @@ namespace Puissance4
         /// </summary>
         protected override void UnloadContent()
         {
-            // TODO: Unload any non ContentManager content here
+
         }
 
         /// <summary>
@@ -113,8 +116,6 @@ namespace Puissance4
 
             Phase.getPhase().Update(gameTime);
 
-            
-            //TODO : Mettre à jour l'affichage
             base.Update(gameTime);
         }
 

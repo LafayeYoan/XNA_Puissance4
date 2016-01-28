@@ -23,7 +23,7 @@ namespace Puissance4
         }
 
         /// <summary>
-        /// Set teh actual pahse
+        /// Set the actual phase
         /// </summary>
         /// <param name="phase"></param>
         /// <returns></returns>
